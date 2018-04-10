@@ -1,0 +1,12 @@
+.env
+staticfiles/*
+!staticfiles/.gitkeep
+*.pyc
+*.pyo
+__pycache__
+.sass-cache
+*.css.map
+!.gitkeep
+memo.md
+db.sqlite3
+.DS_Store
