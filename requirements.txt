@@ -7,3 +7,4 @@ whitenoise
 dj-database-url
 django-bootstrap4
 user-agents
+social-auth-app-django
