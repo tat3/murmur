@@ -1,0 +1,13 @@
+<form method="post" action="{% url 'myauth:create' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.errors.username }}
+    {{ form.username }}
+    {{ form.errors.password1 }}
+    {{ form.password1 }}
+    {{ form.errors.password2 }}
+    {{ form.password2 }}
+    {{ form.errors.email }}
+    {{ form.email }}
+    <input type="submit" value="Create">
+</form>
