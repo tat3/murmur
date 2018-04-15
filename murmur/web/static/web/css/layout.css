@@ -1,9 +1,10 @@
 body {
-  font-family: arial,sans-serif; }
+  font-family: arial,sans-serif;
+  width: 960px; }
 
 .header {
   background-color: #fafafa;
-  padding-top: 7px; }
+  padding-top: 6px; }
   .header_logo {
     display: inline-block;
     line-height: 0;
@@ -13,7 +14,7 @@ body {
       transform: translateY(22px); }
   .header_form {
     display: inline-block;
-    padding: 6px 16px 4px;
+    padding: 4px 16px 4px;
     width: 632px;
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
