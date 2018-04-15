@@ -1,5 +1,7 @@
 """Views of main page."""
 
+import json
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
@@ -28,11 +30,8 @@ usual_login_required = user_passes_test(_usual_login_required)
 @usual_login_required
 def index(request):
     """Index page."""
-    user = request.user
-    owner = UserRelation.objects.get(user=user).owner
     return render(request, "web/index.html", {
-        "user": user,
-        "owner": owner.access_token["oauth_token"]
+        "results": json.load(open("murmur/web/json/result.json", "r"))
     })
 
 

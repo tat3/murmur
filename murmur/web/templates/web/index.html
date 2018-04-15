@@ -14,7 +14,13 @@
         <form method="post" action="{% url 'web:update' %}">
             {% csrf_token %}
             <input class="header_text" type="text" name="text">
-            <input class="header_submit" type="submit" value="" style="background-image: url('{% static 'web/img/search.png' %}'); background-size: 17.5px; background-repeat: no-repeat; background-position: left bottom;">
+            <span class="header_mic">
+                <img src="{% static 'web/img/mic.png' %}">
+            </span>
+            <!--<input class="header_submit" type="submit" value="" style="background-image: url('{% static 'web/img/search.png' %}'); background-size: 17.5px; background-repeat: no-repeat; background-position: left bottom;">-->
+            <button class="header_submit">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            </button>
         </form>
     </span>
 </header>
@@ -35,15 +41,16 @@
 <div class="main">
     <header class="main_header">約 470,000 件 （0.27 秒）</header>
     <ul class="main_body">
+        {% for item in results %}
         <li class="item">
-            <p class="item_title">【Django入門】Databaseの使い方 | 侍エンジニア塾ブログ | プログラミ</p>
-            <p class="item_url">https://www.sejuku.net/blog/26477
-</p>
+            <p class="item_title">{{ item.title }}</p>
+            <p class="item_url">{{ item.url }}</p>
             <p class="item_text">
-                <span class="item_date">2017/07/08 - </span>
-                <span>こんにちは！インストラクターの本多です。 皆さんは、Database（データベース）とは何かをご存知ですか？ Databaseは、データを保存するときに欠かせないアプリケーションです。 開発言語やフレームワークとは別に語られることが多いため、いまひとつピンとこないのではないでしょうか？ この記事では、. ・Databaseとは・DjangoでDatabaseを使ってみよう. といった初歩的な内容から、. ・PythonインタラクティブシェルでDatabaseへデータを保存する・PythonインタラクティブシェルでDatabaseに登録した ...</span>
+                <span class="item_date">{{ item.date }} - </span>
+                <span>{{ item.content }}</span>
             </p>
         </li>
+        {% endfor %}
     </ul>
 
 </div>

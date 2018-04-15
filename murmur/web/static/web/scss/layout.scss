@@ -4,6 +4,7 @@ body {
 
 .header {
     background-color: #fafafa;
+    padding-top: 7px;
     &_logo {
         display: inline-block;
         line-height: 0;
@@ -16,7 +17,7 @@ body {
     }
     &_form {
         display: inline-block;
-        padding: 6px 16px 3px;
+        padding: 6px 16px 4px;
         width: 632px;
         // border: 1px solid #000000;
 
@@ -27,7 +28,7 @@ body {
     }
     &_text {
         line-height: 34px;
-        width: 600px;
+        width: 560px;
         height: 34px;
         border: none;
         &:focus {
@@ -35,12 +36,25 @@ body {
         }
     }
     &_submit {
-        width: 17.5px;
+        // width: 17.5px;
+        margin-left: 10px;
+        width: 24px;
+        padding: 0;
+        background-color: #ffffff;
         border: none;
-        &:focus {
-            outline: none;
+        fill: #4285f4;
+        svg {
+            transform: translateY(5px);
         }
-
+    }
+    &_mic {
+        display: inline-block;
+        img {
+            transform: translateY(4px);
+            display: inline-block;
+            height: 23px;
+            line-height: 0;
+        }
     }
 }
 
@@ -71,7 +85,8 @@ body {
     padding-left: 150px;
 
     &_header {
-        line-height: 43px;
+        padding: 12px 0 17px;
+        // line-height: 43px;
         color: #808080;
         font-size: small;
     }
@@ -81,6 +96,7 @@ body {
 }
 
 .item {
+    margin-bottom: 26px;
     width: 632px;
     &_title {
         color: #1a0dab;
@@ -88,7 +104,17 @@ body {
     }
     &_url {
         color: #006621;
-        font-style: normal;
+        font-size: 14px;
+        padding: 3px 0 5px;
+        &:after {
+            border-color: #006621 transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+            display: inline-block;
+            content: "";
+            padding-top: 3px;
+            margin-left: 5px;
+        }
     }
     &_text {
         color: #545454;
