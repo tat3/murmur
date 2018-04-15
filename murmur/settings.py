@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("PRODUCTION", "False") != "True"
 
-ALLOWED_HOSTS = ["localhost", "*"]
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'murmur.myauth',
+    'social_django',
+    'murmur.web',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -134,3 +139,19 @@ STATICFILES_DIRS = (
 
 LOGIN_URL = '/auth/login'
 LOGIN_REDIRECT_URL = '/'
+
+# backends for social auth
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Twitter App tokens
+SOCIAL_AUTH_TWITTER_KEY = 'gpn9AkjZDgoABnaW5zXLksCxW'
+SOCIAL_AUTH_TWITTER_SECRET = ('LPRarczziFj29hAu9AM9rpkZbKt'
+                              '2HNTZbvenCVYienPlxHIr7z')

@@ -22,4 +22,5 @@ urlpatterns = [
          {"template_name": 'myauth/login.html'},
          name="login"),
     path('logout/', auth_views.logout, name="logout"),
+    path('new_oauth/', views.new_oauth, name="new_oauth"),
 ]
