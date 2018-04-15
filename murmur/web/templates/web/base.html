@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <link rel="icon" type="image/png" href="{% static 'web/img/icon.png' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+
+        <!-- Font Awesome -->
+        <!--<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">-->
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'web/css/cssreset-min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'web/css/layout.css' %}">
+
+        {% block head %}{% endblock %}
+        <title>{% block title %}{% endblock %} | Mix Route</title>
+
+    </head>
+
+    <body>
+        <div class="container-fluid p-0">
+
+            <main id="main">
+                {% block main %}{% endblock %}
+            </main>
+
+        </div> 
+    </body>
+
+</html>

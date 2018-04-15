@@ -37,6 +37,17 @@ def index(request):
 
 
 @usual_login_required
+def test(request):
+    """Test page."""
+    user = request.user
+    owner = UserRelation.objects.get(user=user).owner
+    return render(request, "web/test.html", {
+        "user": user,
+        "owner": owner.access_token["oauth_token"]
+    })
+
+
+@usual_login_required
 def update(request):
     """Update status using POST data."""
     if "text" not in request.POST:

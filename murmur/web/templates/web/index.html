@@ -1,8 +1,51 @@
-<p>{{ user }}</p>
-<p>{{ owner }}</p>
+{% extends 'web/base.html' %}
+{% load static %}
+{% block head %}{% endblock %}
 
-<form method="post" action="{% url 'web:update' %}">
-    {% csrf_token %}
-    <input type="text" name="text">
-    <input type="submit" value="update">
-</form>
+{% block title %}Top{% endblock %}
+
+{% block main %}
+
+<header class="header">
+    <span class="header_logo">
+        <img src="{% static 'web/img/logo.png' %}">
+    </span>
+    <span class="header_form">
+        <form method="post" action="{% url 'web:update' %}">
+            {% csrf_token %}
+            <input class="header_text" type="text" name="text">
+            <input class="header_submit" type="submit" value="" style="background-image: url('{% static 'web/img/search.png' %}'); background-size: 17.5px; background-repeat: no-repeat; background-position: left bottom;">
+        </form>
+    </span>
+</header>
+
+<nav class="nav">
+    <ul class="nav_list">
+        <li class="nav_item nav_item-active">全て</li>
+        <li class="nav_item">動画</li>
+        <li class="nav_item">画像</li>
+        <li class="nav_item">ショッピング</li>
+        <li class="nav_item">ニュース</li>
+        <li class="nav_item">もっと見る</li>
+        <li class="nav_item nav_item-right">設定</li>
+        <li class="nav_item">ツール</li>
+    </ul>
+</nav>
+
+<div class="main">
+    <header class="main_header">約 470,000 件 （0.27 秒）</header>
+    <ul class="main_body">
+        <li class="item">
+            <p class="item_title">【Django入門】Databaseの使い方 | 侍エンジニア塾ブログ | プログラミ</p>
+            <p class="item_url">https://www.sejuku.net/blog/26477
+</p>
+            <p class="item_text">
+                <span class="item_date">2017/07/08 - </span>
+                <span>こんにちは！インストラクターの本多です。 皆さんは、Database（データベース）とは何かをご存知ですか？ Databaseは、データを保存するときに欠かせないアプリケーションです。 開発言語やフレームワークとは別に語られることが多いため、いまひとつピンとこないのではないでしょうか？ この記事では、. ・Databaseとは・DjangoでDatabaseを使ってみよう. といった初歩的な内容から、. ・PythonインタラクティブシェルでDatabaseへデータを保存する・PythonインタラクティブシェルでDatabaseに登録した ...</span>
+            </p>
+        </li>
+    </ul>
+
+</div>
+
+{% endblock %}
