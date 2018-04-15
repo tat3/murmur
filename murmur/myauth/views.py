@@ -2,12 +2,13 @@
 
 import os
 
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
+from django.contrib.auth.views import logout
 
 from social_django.models import UserSocialAuth
 
@@ -19,24 +20,24 @@ def add_app_name(file_name):
     return os.path.join("myauth", file_name)
 
 
-def oauth_login_required(user):
+def _oauth_login_required(user):
     """Decorator function to reject the user who do not login with OAuth."""
-    if user.is_anonymous():
+    if user.is_anonymous:
         return False
     try:
-        user_qs = UserSocialAuth.objects.get(user=user)
+        UserSocialAuth.objects.get(user=user)
     except:
         return False
     return True
 
 
-oauth_login_required = user_passes_test(oauth_login_required)
+oauth_login_required = user_passes_test(_oauth_login_required)
 
 
-@login_required
-def index(request):
-    """Index page."""
-    return render(request, add_app_name('index.html'))
+# @login_required
+# def index(request):
+#     """Index page."""
+#     return render(request, add_app_name('index.html'))
 
 
 @oauth_login_required
@@ -52,9 +53,12 @@ def create(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            # Save new user and relation between it and access_token
             form.save()
             owner = UserSocialAuth.objects.get(user=request.user)
-            relation = UserRelation(owner=owner, user=form)
+            user = User.objects.get(username=request.POST.get("username"))
+            relation = UserRelation(owner=owner, user=user)
+            relation.save()
             return HttpResponseRedirect(reverse('myauth:login'))
         return render(request, add_app_name('new.html'), {'form': form, })
     else:
@@ -63,5 +67,5 @@ def create(request):
 
 def new_oauth(request):
     """Oauth sing-up page."""
-    form = UserCreationForm()
-    return render(request, add_app_name('new_oauth.html'), {'form': form, })
+    logout(request)
+    return render(request, add_app_name('new_oauth.html'))
