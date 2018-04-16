@@ -112,6 +112,9 @@ body {
         color: #006621;
         font-size: 14px;
         padding: 3px 0 5px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         &:after {
             border-color: #006621 transparent;
             border-style: solid;

@@ -1,3 +1,5 @@
+{% extends "admin/base.html" %}
+{% block content %}
 <form method="post" action="{% url 'myauth:create' %}">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -11,3 +13,4 @@
     {{ form.email }}
     <input type="submit" value="Create">
 </form>
+{% endblock %}
