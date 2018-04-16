@@ -104,6 +104,9 @@ body {
     &_title {
         color: #1a0dab;
         font-size: 18px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
     &_url {
         color: #006621;

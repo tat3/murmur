@@ -75,7 +75,10 @@ body {
   width: 600px; }
   .item_title {
     color: #1a0dab;
-    font-size: 18px; }
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
   .item_url {
     color: #006621;
     font-size: 14px;
