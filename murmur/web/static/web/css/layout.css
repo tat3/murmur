@@ -34,6 +34,8 @@ body {
     background-color: #ffffff;
     border: none;
     fill: #4285f4; }
+    .header_submit:focus {
+      outline: none; }
     .header_submit svg {
       transform: translateY(5px); }
   .header_mic {
@@ -70,7 +72,7 @@ body {
 
 .item {
   margin-bottom: 26px;
-  width: 632px; }
+  width: 600px; }
   .item_title {
     color: #1a0dab;
     font-size: 18px; }

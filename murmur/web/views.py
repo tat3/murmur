@@ -11,6 +11,7 @@ from social_django.models import UserSocialAuth
 
 from murmur.myauth.models import UserRelation
 from .utils import TwitterClient
+from .bs import Parser
 
 
 def _usual_login_required(user):
@@ -30,8 +31,15 @@ usual_login_required = user_passes_test(_usual_login_required)
 @usual_login_required
 def index(request):
     """Index page."""
+    results = json.load(open("murmur/web/json/result.json", "r"))
+    url = ("https://www.google.co.jp/search?q={}"
+           "&ie=UTF-8&num=30")
+    url = url.format("ruby+on+rails")
+    parser = Parser()
+    soup = parser.create_soup_from_url(url)
+    results = parser.scrape_articles_google(soup)
     return render(request, "web/index.html", {
-        "results": json.load(open("murmur/web/json/result.json", "r"))
+        "results": results
     })
 
 
