@@ -16,4 +16,5 @@ urlpatterns = [
     path('error/', TemplateView.as_view(
         template_name="web/error.html"),
         name="error"),
+    path('<str:word>/', views.index, name="index_word"),
 ]

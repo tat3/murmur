@@ -29,15 +29,16 @@ usual_login_required = user_passes_test(_usual_login_required)
 
 
 @usual_login_required
-def index(request):
+def index(request, word="ruby+on+rails"):
     """Index page."""
-    results = json.load(open("murmur/web/json/result.json", "r"))
     url = ("https://www.google.co.jp/search?q={}"
-           "&ie=UTF-8&num=30")
-    url = url.format("ruby+on+rails")
+           "&ie=UTF-8&num=50")
+    url = url.format(word)
     parser = Parser()
     soup = parser.create_soup_from_url(url)
     results = parser.scrape_articles_google(soup)
+    if len(results) <= 3:
+        results = json.load(open("murmur/web/json/result.json", "r"))
     return render(request, "web/index.html", {
         "results": results
     })
