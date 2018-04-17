@@ -47,7 +47,7 @@
             <p class="item_url">{{ item.url }}</p>
             <p class="item_text">
                 <span class="item_date">{{ item.date }} - </span>
-                <span>{{ item.content }}</span>
+                <span>{{ item.content|safe }}</span>
             </p>
         </li>
         {% endfor %}

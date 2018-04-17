@@ -1,6 +1,7 @@
 """Views of main page."""
 
 import json
+import html
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
@@ -37,6 +38,9 @@ def index(request, word="ruby+on+rails"):
     parser = Parser()
     soup = parser.create_soup_from_url(url)
     results = parser.scrape_articles_google(soup)
+    for item in results:
+        item["content"] = item["content"].replace(
+            word, "<b>{}</b>".format(html.escape(word)))
     if len(results) <= 3:
         results = json.load(open("murmur/web/json/result.json", "r"))
     return render(request, "web/index.html", {
